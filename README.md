@@ -131,19 +131,3 @@ Hibernate-specific feature is worth the lock-in.
 | Books by title | `BookDao.findByTitleCriteria` | Criteria API, single fixed predicate |
 | Optional title/author filters | `BookDao.searchBooks` | Criteria API; predicates are only added to the list when the argument is non-null, so the generated SQL's `WHERE` clause changes shape per call |
 
-## 8. What was fixed from the original files
-
-While wiring this up, a few things in the uploaded project didn't line up
-and are fixed here:
-
-- `pom.xml` actually contained `hibernate.cfg.xml` content (Hibernate's old
-  native XML config), not a Maven POM — there were no declared dependencies,
-  so nothing could build. Replaced with a real POM (Hibernate 6.5, H2, the
-  compiler and exec plugins).
-- `persistence.xml` listed entity classes as `com.yourpackage.*`, but the
-  entities actually live in package `entity`. Fixed to `entity.*`.
-- `Author`, `Book`, and `Publisher` only had parameterized constructors.
-  JPA instantiates entities via reflection and requires a no-arg
-  constructor — added `protected` no-arg constructors to all three.
-- `AuthorDao` was missing `findAllBooksByAuthorId(Long)`, which the original
-  `Main.java` already called — added it.
