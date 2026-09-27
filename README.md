@@ -175,5 +175,3 @@ and are fixed here:
 - [x] LAZY vs `JOIN FETCH` comparison, explained
 - [x] JPQL vs HQL comparison, with example
 - [ ] Optional: move `Author.books` mapping to `orm.xml` — not implemented (left as an extension; would require dropping `@OneToMany` from `Author` and adding the equivalent `<one-to-many>` in a new `META-INF/orm.xml`)
-#   l i b r a r y - m a n a g e m e n t - s y s t e m  
- 
